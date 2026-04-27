@@ -56,7 +56,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-purple flex-shrink-0" />
-                <span className="text-sm text-text-secondary">hello@remedix.com</span>
+                <span className="text-sm text-text-secondary">Mamoon@remedixsolutions.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-purple flex-shrink-0" />
