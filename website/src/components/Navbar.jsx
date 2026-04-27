@@ -32,7 +32,7 @@ export default function Navbar() {
         <a href="#" className="flex items-center gap-3 group">
           <img
             src="/remedix-logo.svg"
-            alt="ReMedi-X Solutions"
+            alt="Remedi-X Solutions"
             className="h-10 transition-transform duration-300 group-hover:scale-105"
           />
         </a>

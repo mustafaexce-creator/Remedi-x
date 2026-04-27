@@ -19,7 +19,7 @@ export default function Footer() {
             <a href="#" className="inline-block mb-5">
               <img
                 src="/remedix-logo.svg"
-                alt="ReMedi-X Solutions"
+                alt="Remedi-X Solutions"
                 className="h-10"
               />
             </a>
@@ -73,10 +73,10 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-border/20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted">
-            &copy; {currentYear} ReMedi-X Solutions. All rights reserved.
+            &copy; {currentYear} Remedi-X Solutions. All rights reserved.
           </p>
           <p className="text-xs text-text-muted">
-            Designed with <span className="text-purple">♥</span> by ReMedi-X
+            Designed with <span className="text-purple">♥</span> by Remedi-X
           </p>
         </div>
       </div>

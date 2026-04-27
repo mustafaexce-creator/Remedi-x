@@ -1,4 +1,4 @@
-ReMedi-X Solutions
+Remedi-X Solutionscode
 Website Creation • Chatbots • Business Automations
 Turn Missed Opportunities Into
 Customers
