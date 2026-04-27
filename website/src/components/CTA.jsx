@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Sparkles, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 
 // The actual URL from Google Apps Script after deployment
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylOEVJqOYuEed4Jn2i883m96wCWdDRVpmKmBoQhDwU3fRkB__jUTCE74ZN9VMgexQT/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzcLnb5YwPrbJcNKcFQg3pVuhJdKnkyf828yBQkFsUSXzfbi4I2uip0Twitu5My1_04/exec';
 
 export default function CTA() {
   const sectionRef = useRef(null);
