@@ -60,7 +60,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-purple flex-shrink-0" />
-                <span className="text-sm text-text-secondary">Contact us for a quote</span>
+                <a href="tel:+18455227481" className="text-sm text-text-secondary hover:text-purple-light transition-colors">+1 (845) 522-7481</a>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin size={16} className="text-purple flex-shrink-0" />
