@@ -146,6 +146,23 @@
       .fb-check { color: #9147ff; font-weight: bold; }
       @media (max-width: 1024px) { .fb-why-grid { grid-template-columns: 1fr; } }
 
+      /* --- Our Work --- */
+      .fb-work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+      @media (max-width: 1024px) { .fb-work-grid { grid-template-columns: 1fr; } }
+      .fb-browser { border-radius: 16px; overflow: hidden; border: 1px solid rgba(145,71,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+      .fb-browser-bar { background: #f1f5f9; padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(145,71,255,0.1); }
+      .fb-dots { display: flex; gap: 6px; }
+      .fb-dots span { width: 12px; height: 12px; border-radius: 50%; }
+      .fb-url-bar { flex: 1; background: rgba(255,255,255,0.7); border-radius: 8px; padding: 6px 12px; font-size: 12px; color: #94a3b8; font-family: monospace; }
+      .fb-preview { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+      .fb-preview-text { text-align: center; padding: 24px; }
+      .fb-preview-text p { font-size: 13px; color: #94a3b8; margin-top: 8px; }
+      .fb-project-info { padding: 24px 4px 0; }
+      .fb-project-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+      .fb-project-info .fb-tagline { font-size: 14px; color: #94a3b8; font-style: italic; margin-bottom: 12px; }
+      .fb-project-info p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 16px; }
+      .fb-visit { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #9147ff; }
+
       /* --- Contact / CTA --- */
       .fb-contact { padding: 112px 24px; text-align: center; }
       .fb-form-wrap { max-width: 640px; margin: 0 auto; padding: 40px; }
@@ -335,6 +352,61 @@
                       <h3 class="fb-heading">Better Customer Experience</h3>
                       <p>Cleaner follow-up, faster responses, and systems that work while you sleep.</p>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== OUR WORK ===== -->
+          <section class="fb-section" id="work">
+            <div class="fb-mw">
+              <div class="fb-section-header">
+                <p class="fb-tag">Our Work</p>
+                <h2 class="fb-h2 fb-heading">Projects That <span class="fb-grad">Speak for Themselves</span></h2>
+                <p class="fb-section-sub">Real businesses. Real results. See what we've built for our clients.</p>
+              </div>
+
+              <div class="fb-work-grid">
+                <!-- Everlast Fences -->
+                <div>
+                  <a href="https://everlastfences.com" target="_blank" rel="noopener noreferrer" class="fb-browser" style="display: block;">
+                    <div class="fb-browser-bar">
+                      <div class="fb-dots">
+                        <span style="background:#f87171"></span>
+                        <span style="background:#fbbf24"></span>
+                        <span style="background:#34d399"></span>
+                      </div>
+                      <div class="fb-url-bar">everlastfences.com</div>
+                    </div>
+                    <img src="/work-everlast.png" alt="Everlast Fences website hero section — Built Strong. Styled for Life." style="width: 100%; display: block;" loading="lazy" />
+                  </a>
+                  <div class="fb-project-info">
+                    <h3 class="fb-heading">Everlast Fences</h3>
+                    <p class="fb-tagline">— Built Strong. Styled for Life.</p>
+                    <p>Expert exterior contracting specializing in premium fencing, decks, and concrete work for homes and businesses across WNY.</p>
+                    <a href="https://everlastfences.com" target="_blank" rel="noopener noreferrer" class="fb-visit">Visit Everlast Fences →</a>
+                  </div>
+                </div>
+
+                <!-- Buffalo Bargains -->
+                <div>
+                  <a href="https://buffalobargains.com" target="_blank" rel="noopener noreferrer" class="fb-browser" style="display: block;">
+                    <div class="fb-browser-bar">
+                      <div class="fb-dots">
+                        <span style="background:#f87171"></span>
+                        <span style="background:#fbbf24"></span>
+                        <span style="background:#34d399"></span>
+                      </div>
+                      <div class="fb-url-bar">buffalobargains.com</div>
+                    </div>
+                    <img src="/work-buffalo.png" alt="Buffalo Bargains website hero section — The Hunt is On." style="width: 100%; display: block;" loading="lazy" />
+                  </a>
+                  <div class="fb-project-info">
+                    <h3 class="fb-heading">Buffalo Bargains</h3>
+                    <p class="fb-tagline">— The Hunt is On.</p>
+                    <p>A premier liquidation outlet offering a unique bin-store shopping experience with daily price drops on name-brand electronics and home goods.</p>
+                    <a href="https://buffalobargains.com" target="_blank" rel="noopener noreferrer" class="fb-visit">Visit Buffalo Bargains →</a>
                   </div>
                 </div>
               </div>
