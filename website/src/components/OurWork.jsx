@@ -48,11 +48,11 @@ function ProjectCard({ project, index }) {
         </div>
 
         {/* Screenshot */}
-        <div className="relative w-full overflow-hidden bg-navy-light">
+        <div className="relative w-full aspect-[16/9] overflow-hidden bg-navy-light">
           <img
             src={project.image}
             alt={`${project.title} website hero section`}
-            className="w-full h-auto block transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+            className="w-full h-full object-cover object-top block transition-transform duration-[1.5s] ease-out group-hover:scale-105"
             loading="lazy"
           />
           {/* Hover Overlay */}
