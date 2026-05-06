@@ -11,11 +11,11 @@
     <meta name="keywords" content="web design, AI chatbots, business automation, lead generation, websites, digital marketing, Remedi-X Solutions" />
     <meta name="author" content="Remedi-X Solutions" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://remedi-x.com/" />
+    <link rel="canonical" href="https://remedixsolutions.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://remedi-x.com/" />
+    <meta property="og:url" content="https://remedixsolutions.com/" />
     <meta property="og:title" content="Remedi-X Solutions | Websites • Chatbots • Automations" />
     <meta property="og:description" content="Turn missed opportunities into customers with professional websites, AI chatbots, and business automations." />
     <meta property="og:site_name" content="Remedi-X Solutions" />
@@ -35,13 +35,14 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Remedi-X Solutions",
-        "url": "https://remedi-x.com",
+        "url": "https://remedixsolutions.com",
         "description": "Professional websites, AI chatbots, and business automations to turn missed opportunities into customers.",
         "foundingDate": "2024",
         "sameAs": [],
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "sales",
+          "email": "Mamoon@remedixsolutions.com",
           "availableLanguage": ["English"]
         },
         "offers": {
@@ -73,77 +74,77 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Skeleton Styles (inline for instant render) -->
+    <!-- Fallback styles (render real content before JS/CSS loads) -->
     <style>
-      .skeleton-shell {
+      /* Base fallback — matches the React app's design tokens */
+      .fallback-shell {
         min-height: 100vh;
         background: #ffffff;
         font-family: 'Inter', system-ui, sans-serif;
-        overflow: hidden;
+        color: #0f172a;
+        overflow-x: hidden;
       }
+      .fallback-shell * { box-sizing: border-box; }
 
-      /* --- Shimmer Animation --- */
-      @keyframes skeleton-shimmer {
-        0% { background-position: -400px 0; }
-        100% { background-position: 400px 0; }
-      }
-      .shimmer {
-        background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 37%, #f1f5f9 63%);
-        background-size: 800px 100%;
-        animation: skeleton-shimmer 1.8s ease-in-out infinite;
-        border-radius: 8px;
-      }
-
-      /* --- Skeleton Navbar --- */
-      .skel-nav {
+      /* --- Navbar --- */
+      .fb-nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 50;
         padding: 20px 24px;
+        background: transparent;
+      }
+      .fb-nav-inner {
+        max-width: 1280px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 1280px;
-        margin: 0 auto;
       }
-      .skel-logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-      }
-      .skel-nav-links {
+      .fb-nav-logo { height: 40px; }
+      .fb-nav-links {
         display: flex;
         gap: 32px;
         align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
       }
-      .skel-nav-link {
-        width: 60px;
-        height: 14px;
-        border-radius: 7px;
+      .fb-nav-links a {
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+        text-decoration: none;
       }
-      .skel-nav-btn {
-        width: 110px;
-        height: 40px;
-        border-radius: 20px;
-        background: linear-gradient(90deg, rgba(145,71,255,0.08) 25%, rgba(145,71,255,0.15) 37%, rgba(145,71,255,0.08) 63%);
-        background-size: 800px 100%;
-        animation: skeleton-shimmer 1.8s ease-in-out infinite;
+      .fb-nav-cta {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 9999px;
+        font-size: 14px;
+        font-weight: 600;
+        background: #9147ff;
+        color: #ffffff !important;
+        text-decoration: none;
+      }
+      @media (max-width: 768px) {
+        .fb-nav-links { display: none; }
       }
 
-      /* --- Skeleton Hero --- */
-      .skel-hero {
+      /* --- Hero --- */
+      .fb-hero {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 96px 24px 64px;
+        padding: 120px 24px 80px;
         text-align: center;
         position: relative;
       }
-      .skel-hero::before {
+      .fb-hero::before {
         content: '';
         position: absolute;
         top: 25%;
@@ -155,186 +156,327 @@
         border-radius: 50%;
         pointer-events: none;
       }
-      .skel-badge {
-        width: 300px;
-        height: 32px;
-        border-radius: 16px;
+      .fb-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(145,71,255,0.12);
+        font-size: 12px;
+        font-weight: 500;
+        color: #a66dff;
         margin-bottom: 32px;
       }
-      .skel-heading-1 {
-        width: 340px;
-        height: 52px;
-        margin-bottom: 10px;
+      .fb-badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #9147ff;
+        border-radius: 50%;
       }
-      .skel-heading-2 {
-        width: 420px;
-        height: 52px;
-        margin-bottom: 10px;
+      .fb-heading {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: clamp(40px, 7vw, 80px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0 0 32px;
+        position: relative;
+        z-index: 1;
       }
-      .skel-heading-3 {
-        width: 280px;
-        height: 52px;
-        margin-bottom: 32px;
-        background: linear-gradient(90deg, rgba(145,71,255,0.12) 25%, rgba(145,71,255,0.22) 37%, rgba(145,71,255,0.12) 63%);
-        background-size: 800px 100%;
-        animation: skeleton-shimmer 1.8s ease-in-out infinite;
-        border-radius: 8px;
+      .fb-heading-gradient {
+        background: linear-gradient(to right, #9147ff, #a66dff, #9147ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .skel-subtitle {
-        width: 520px;
-        max-width: 90%;
-        height: 18px;
-        margin-bottom: 10px;
+      .fb-subheading {
+        max-width: 640px;
+        margin: 0 auto 48px;
+        font-size: clamp(16px, 2.5vw, 20px);
+        color: #475569;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
       }
-      .skel-subtitle-2 {
-        width: 440px;
-        max-width: 80%;
-        height: 18px;
-        margin-bottom: 48px;
-      }
-      .skel-cta-row {
+      .fb-cta-row {
         display: flex;
         gap: 16px;
         justify-content: center;
         flex-wrap: wrap;
         margin-bottom: 80px;
+        position: relative;
+        z-index: 1;
       }
-      .skel-cta-primary {
-        width: 240px;
-        height: 52px;
-        border-radius: 26px;
-        background: linear-gradient(90deg, rgba(145,71,255,0.15) 25%, rgba(145,71,255,0.28) 37%, rgba(145,71,255,0.15) 63%);
-        background-size: 800px 100%;
-        animation: skeleton-shimmer 1.8s ease-in-out infinite;
+      .fb-cta-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 32px;
+        border-radius: 9999px;
+        font-size: 16px;
+        font-weight: 600;
+        background: #9147ff;
+        color: #ffffff;
+        text-decoration: none;
+        box-shadow: 0 0 20px rgba(145,71,255,0.2);
       }
-      .skel-cta-secondary {
-        width: 180px;
-        height: 52px;
-        border-radius: 26px;
+      .fb-cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 32px;
+        border-radius: 9999px;
+        font-size: 16px;
+        font-weight: 600;
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(145,71,255,0.12);
+        color: #0f172a;
+        text-decoration: none;
       }
-      .skel-stats {
+      .fb-stats {
         display: flex;
         gap: 24px;
         justify-content: center;
         flex-wrap: wrap;
         max-width: 768px;
+        position: relative;
+        z-index: 1;
       }
-      .skel-stat-card {
+      .fb-stat-card {
         flex: 1;
         min-width: 180px;
         max-width: 240px;
-        height: 96px;
-        border-radius: 16px;
-        border: 1px solid rgba(145,71,255,0.08);
-        background: rgba(248,250,252,0.6);
-      }
-
-      /* Hide nav links on mobile */
-      @media (max-width: 768px) {
-        .skel-nav-links { display: none; }
-        .skel-heading-1 { width: 240px; height: 40px; }
-        .skel-heading-2 { width: 300px; height: 40px; }
-        .skel-heading-3 { width: 200px; height: 40px; }
-        .skel-stat-card { min-width: 100%; }
-      }
-
-      /* --- Noscript Styles --- */
-      .noscript-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
         padding: 24px;
-      }
-      .noscript-card {
-        background: #ffffff;
-        border: 1px solid rgba(145, 71, 255, 0.2);
-        border-radius: 20px;
-        padding: 48px 40px;
-        max-width: 480px;
-        text-align: center;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
-      }
-      .noscript-icon {
-        width: 56px;
-        height: 56px;
-        margin: 0 auto 20px;
-        background: rgba(145, 71, 255, 0.1);
         border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(145,71,255,0.12);
+        text-align: center;
       }
-      .noscript-title {
+      .fb-stat-value {
         font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-        font-size: 22px;
+        font-size: 30px;
         font-weight: 700;
         color: #0f172a;
-        margin: 0 0 12px;
+        margin: 0 0 4px;
       }
-      .noscript-text {
-        font-family: 'Inter', system-ui, sans-serif;
-        font-size: 15px;
+      .fb-stat-label {
+        font-size: 14px;
         color: #475569;
-        line-height: 1.7;
         margin: 0;
+      }
+      @media (max-width: 768px) {
+        .fb-stat-card { min-width: 100%; }
+      }
+
+      /* --- Services Section --- */
+      .fb-services {
+        padding: 80px 24px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .fb-section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(145,71,255,0.12);
+        font-size: 12px;
+        font-weight: 500;
+        color: #a66dff;
+        margin-bottom: 16px;
+      }
+      .fb-section-title {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: clamp(28px, 5vw, 48px);
+        font-weight: 700;
+        margin: 0 0 16px;
+        line-height: 1.15;
+      }
+      .fb-section-subtitle {
+        font-size: 18px;
+        color: #475569;
+        max-width: 600px;
+        line-height: 1.6;
+        margin: 0 0 48px;
+      }
+      .fb-services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      .fb-service-card {
+        padding: 32px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(145,71,255,0.12);
+      }
+      .fb-service-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: rgba(145,71,255,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9147ff;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+      .fb-service-card h3 {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+      .fb-service-card p {
+        font-size: 14px;
+        color: #475569;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* --- Noscript Banner (non-blocking) --- */
+      .noscript-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: #0f172a;
+        color: #ffffff;
+        padding: 14px 24px;
+        text-align: center;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .noscript-banner strong {
+        color: #a66dff;
       }
     </style>
   </head>
   <body>
     <div id="root">
-      <!-- Skeleton Shell — replaced automatically when React renders -->
-      <div class="skeleton-shell" aria-hidden="true">
-        <!-- Skeleton Navbar -->
-        <header class="skel-nav">
-          <div class="skel-logo shimmer"></div>
-          <div class="skel-nav-links">
-            <div class="skel-nav-link shimmer"></div>
-            <div class="skel-nav-link shimmer"></div>
-            <div class="skel-nav-link shimmer"></div>
-            <div class="skel-nav-link shimmer"></div>
-            <div class="skel-nav-btn"></div>
-          </div>
+      <!--
+        Static fallback content — real text, real links, real structure.
+        Crawlers index this immediately. React hydrates over it on load.
+        After `npm run build`, the postbuild-prerender script replaces this
+        with the fully-rendered React DOM.
+      -->
+      <div class="fallback-shell">
+        <!-- Navbar -->
+        <header class="fb-nav">
+          <nav class="fb-nav-inner">
+            <a href="#">
+              <img src="/remedix-logo.svg" alt="Remedi-X Solutions" class="fb-nav-logo" />
+            </a>
+            <ul class="fb-nav-links">
+              <li><a href="#services">Services</a></li>
+              <li><a href="#why">Why Us</a></li>
+              <li><a href="#work">Our Work</a></li>
+              <li><a href="#contact" class="fb-nav-cta">Get Started</a></li>
+            </ul>
+          </nav>
         </header>
 
-        <!-- Skeleton Hero -->
-        <section class="skel-hero">
-          <div class="skel-badge shimmer"></div>
-          <div class="skel-heading-1 shimmer"></div>
-          <div class="skel-heading-2 shimmer"></div>
-          <div class="skel-heading-3"></div>
-          <div class="skel-subtitle shimmer"></div>
-          <div class="skel-subtitle-2 shimmer"></div>
-          <div class="skel-cta-row">
-            <div class="skel-cta-primary"></div>
-            <div class="skel-cta-secondary shimmer"></div>
-          </div>
-          <div class="skel-stats">
-            <div class="skel-stat-card shimmer"></div>
-            <div class="skel-stat-card shimmer"></div>
-            <div class="skel-stat-card shimmer"></div>
-          </div>
-        </section>
+        <!-- Hero -->
+        <main>
+          <section class="fb-hero" id="hero">
+            <div class="fb-badge">
+              <span class="fb-badge-dot"></span>
+              Website Creation • Chatbots • Business Automations
+            </div>
+
+            <h1 class="fb-heading">
+              <span>Turn Missed</span><br>
+              <span>Opportunities Into</span><br>
+              <span class="fb-heading-gradient">Customers</span>
+            </h1>
+
+            <p class="fb-subheading">
+              Build a stronger business presence with systems that help you respond
+              faster, capture more leads, and save hours of manual work.
+            </p>
+
+            <div class="fb-cta-row">
+              <a href="#contact" class="fb-cta-primary">
+                Get Your Free Consultation →
+              </a>
+              <a href="#services" class="fb-cta-secondary">
+                See What We Do
+              </a>
+            </div>
+
+            <div class="fb-stats">
+              <div class="fb-stat-card">
+                <p class="fb-stat-value">3x</p>
+                <p class="fb-stat-label">More Leads</p>
+              </div>
+              <div class="fb-stat-card">
+                <p class="fb-stat-value">24/7</p>
+                <p class="fb-stat-label">Faster Follow-Up</p>
+              </div>
+              <div class="fb-stat-card">
+                <p class="fb-stat-value">80%</p>
+                <p class="fb-stat-label">Less Manual Work</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Services -->
+          <section class="fb-services" id="services">
+            <div class="fb-section-tag">What We Build</div>
+            <h2 class="fb-section-title">
+              Everything You Need to <span class="fb-heading-gradient">Grow Online</span>
+            </h2>
+            <p class="fb-section-subtitle">
+              From professional websites to intelligent chatbots — we build the systems that help your business capture and convert more leads.
+            </p>
+            <div class="fb-services-grid">
+              <div class="fb-service-card">
+                <div class="fb-service-icon">🌐</div>
+                <h3>Professional Websites</h3>
+                <p>Custom, conversion-optimized websites that represent your brand and turn visitors into paying customers.</p>
+              </div>
+              <div class="fb-service-card">
+                <div class="fb-service-icon">🤖</div>
+                <h3>AI Chatbots</h3>
+                <p>Intelligent chatbots that handle customer inquiries, capture leads, and provide 24/7 support — even while you sleep.</p>
+              </div>
+              <div class="fb-service-card">
+                <div class="fb-service-icon">⚙️</div>
+                <h3>Business Automations</h3>
+                <p>Streamline your workflows, automate follow-ups, and eliminate repetitive tasks to save up to 80% of manual work.</p>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <!-- Footer -->
+        <footer style="border-top: 1px solid rgba(145,71,255,0.1); padding: 48px 24px; max-width: 1280px; margin: 0 auto;">
+          <p style="font-size: 14px; color: #475569; margin: 0 0 12px;">
+            <strong style="color: #0f172a;">Remedi-X Solutions</strong> — Turn missed opportunities into customers with professional websites, AI chatbots, and smart business automations.
+          </p>
+          <p style="font-size: 13px; color: #94a3b8; margin: 0;">
+            Contact: <a href="mailto:Mamoon@remedixsolutions.com" style="color: #9147ff; text-decoration: none;">Mamoon@remedixsolutions.com</a>
+          </p>
+          <p style="font-size: 12px; color: #94a3b8; margin: 16px 0 0;">© 2026 Remedi-X Solutions. All rights reserved.</p>
+        </footer>
       </div>
     </div>
 
-    <!-- Noscript Fallback -->
+    <!-- Noscript: non-blocking bottom banner — content above is still fully visible -->
     <noscript>
-      <div class="noscript-overlay">
-        <div class="noscript-card">
-          <div class="noscript-icon">⚡</div>
-          <h2 class="noscript-title">JavaScript Required</h2>
-          <p class="noscript-text">
-            Remedi-X Solutions needs JavaScript to deliver the best experience.
-            Please enable JavaScript in your browser settings and reload the page.
-          </p>
-        </div>
+      <div class="noscript-banner">
+        <strong>Note:</strong> For the full interactive experience, please enable JavaScript.
+        You can still browse the content above.
       </div>
     </noscript>
 
