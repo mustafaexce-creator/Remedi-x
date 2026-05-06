@@ -5,10 +5,12 @@
  * Uses Puppeteer to load the built site in a headless browser,
  * waits for React to fully render, then saves the HTML back to dist/index.html.
  * 
+ * Gracefully skips if Chrome is not available (e.g., on Vercel CI).
+ * In that case, the semantic HTML fallback in index.html is served instead.
+ * 
  * Usage: node postbuild-prerender.js
  */
 
-import puppeteer from 'puppeteer'
 import { createServer } from 'http'
 import { readFileSync, writeFileSync } from 'fs'
 import { resolve, join, extname } from 'path'
@@ -65,14 +67,33 @@ function createStaticServer(dir, port) {
 async function prerender() {
   console.log('\n✨ Post-build pre-rendering started...\n')
 
+  // Try to import puppeteer — gracefully skip if Chrome is not installed
+  let puppeteer
+  try {
+    puppeteer = (await import('puppeteer')).default
+  } catch (err) {
+    console.log('  ⚠️  Puppeteer not available — skipping pre-render.')
+    console.log('  ℹ️  The semantic HTML fallback will be served instead.\n')
+    process.exit(0)
+  }
+
   // 1. Start a static server for the dist output
   const server = await createStaticServer(DIST_DIR, PORT)
 
-  // 2. Launch headless browser
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  })
+  let browser
+  try {
+    // 2. Launch headless browser
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    })
+  } catch (err) {
+    // Chrome binary not found (CI environments like Vercel)
+    console.log(`  ⚠️  Could not launch Chrome: ${err.message.split('\n')[0]}`)
+    console.log('  ℹ️  Skipping pre-render — semantic HTML fallback will be served instead.\n')
+    server.close()
+    process.exit(0)
+  }
 
   try {
     const page = await browser.newPage()
@@ -96,12 +117,13 @@ async function prerender() {
     writeFileSync(outputPath, html, 'utf-8')
     console.log(`  ✅ Pre-rendered HTML saved to ${outputPath}`)
 
-    // Quick sanity check — count characters in the rendered output
-    const originalSize = readFileSync(join(DIST_DIR, 'index.html'), 'utf-8').length
-    console.log(`  📊 Output size: ${(originalSize / 1024).toFixed(1)} KB`)
+    // Quick sanity check
+    const outputSize = readFileSync(join(DIST_DIR, 'index.html'), 'utf-8').length
+    console.log(`  📊 Output size: ${(outputSize / 1024).toFixed(1)} KB`)
   } catch (err) {
     console.error('  ❌ Pre-rendering failed:', err.message)
-    process.exit(1)
+    console.log('  ℹ️  Continuing with semantic HTML fallback.\n')
+    // Don't exit(1) — let the build succeed with the fallback HTML
   } finally {
     await browser.close()
     server.close()
