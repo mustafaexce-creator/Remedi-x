@@ -74,309 +74,120 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Fallback styles (render real content before JS/CSS loads) -->
+    <!--
+      Static fallback styles — matches the React app's design tokens.
+      This renders real, crawlable content before JS/Tailwind loads.
+      React hydrates over this on load; postbuild-prerender replaces it entirely.
+    -->
     <style>
-      /* Base fallback — matches the React app's design tokens */
-      .fallback-shell {
-        min-height: 100vh;
-        background: #ffffff;
-        font-family: 'Inter', system-ui, sans-serif;
-        color: #0f172a;
-        overflow-x: hidden;
-      }
-      .fallback-shell * { box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      .fb { min-height: 100vh; background: #fff; font-family: 'Inter', system-ui, sans-serif; color: #0f172a; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      ul, ol { list-style: none; }
+      .fb-mw { max-width: 1280px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+      .fb-heading { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+      .fb-purple { color: #9147ff; }
+      .fb-grad { background: linear-gradient(to right, #9147ff, #a66dff, #9147ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .fb-muted { color: #475569; }
+      .fb-faint { color: #94a3b8; }
+      .fb-glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(145,71,255,0.12); border-radius: 16px; }
+      .fb-glass-strong { background: rgba(255,255,255,0.9); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid rgba(145,71,255,0.2); border-radius: 24px; }
 
-      /* --- Navbar --- */
-      .fb-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        padding: 20px 24px;
-        background: transparent;
-      }
-      .fb-nav-inner {
-        max-width: 1280px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .fb-nav-logo { height: 40px; }
-      .fb-nav-links {
-        display: flex;
-        gap: 32px;
-        align-items: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .fb-nav-links a {
-        font-size: 14px;
-        font-weight: 500;
-        color: #475569;
-        text-decoration: none;
-      }
-      .fb-nav-cta {
-        display: inline-flex;
-        align-items: center;
-        padding: 10px 20px;
-        border-radius: 9999px;
-        font-size: 14px;
-        font-weight: 600;
-        background: #9147ff;
-        color: #ffffff !important;
-        text-decoration: none;
-      }
-      @media (max-width: 768px) {
-        .fb-nav-links { display: none; }
-      }
+      /* --- Nav --- */
+      .fb-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 20px 0; }
+      .fb-nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+      .fb-nav img { height: 40px; }
+      .fb-nav-links { display: flex; gap: 32px; align-items: center; }
+      .fb-nav-links a { font-size: 14px; font-weight: 500; color: #475569; }
+      .fb-nav-cta { padding: 10px 20px; border-radius: 9999px; font-weight: 600; background: #9147ff; color: #fff !important; }
+      @media (max-width: 768px) { .fb-nav-links { display: none; } }
 
       /* --- Hero --- */
-      .fb-hero {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 120px 24px 80px;
-        text-align: center;
-        position: relative;
-      }
-      .fb-hero::before {
-        content: '';
-        position: absolute;
-        top: 25%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(145,71,255,0.06) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-      }
-      .fb-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 16px;
-        border-radius: 9999px;
-        background: rgba(255,255,255,0.6);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(145,71,255,0.12);
-        font-size: 12px;
-        font-weight: 500;
-        color: #a66dff;
-        margin-bottom: 32px;
-      }
-      .fb-badge-dot {
-        width: 8px;
-        height: 8px;
-        background: #9147ff;
-        border-radius: 50%;
-      }
-      .fb-heading {
-        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-        font-size: clamp(40px, 7vw, 80px);
-        font-weight: 800;
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin: 0 0 32px;
-        position: relative;
-        z-index: 1;
-      }
-      .fb-heading-gradient {
-        background: linear-gradient(to right, #9147ff, #a66dff, #9147ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      .fb-subheading {
-        max-width: 640px;
-        margin: 0 auto 48px;
-        font-size: clamp(16px, 2.5vw, 20px);
-        color: #475569;
-        line-height: 1.6;
-        position: relative;
-        z-index: 1;
-      }
-      .fb-cta-row {
-        display: flex;
-        gap: 16px;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 80px;
-        position: relative;
-        z-index: 1;
-      }
-      .fb-cta-primary {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 16px 32px;
-        border-radius: 9999px;
-        font-size: 16px;
-        font-weight: 600;
-        background: #9147ff;
-        color: #ffffff;
-        text-decoration: none;
-        box-shadow: 0 0 20px rgba(145,71,255,0.2);
-      }
-      .fb-cta-secondary {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 16px 32px;
-        border-radius: 9999px;
-        font-size: 16px;
-        font-weight: 600;
-        background: rgba(255,255,255,0.6);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(145,71,255,0.12);
-        color: #0f172a;
-        text-decoration: none;
-      }
-      .fb-stats {
-        display: flex;
-        gap: 24px;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 768px;
-        position: relative;
-        z-index: 1;
-      }
-      .fb-stat-card {
-        flex: 1;
-        min-width: 180px;
-        max-width: 240px;
-        padding: 24px;
-        border-radius: 16px;
-        background: rgba(255,255,255,0.6);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(145,71,255,0.12);
-        text-align: center;
-      }
-      .fb-stat-value {
-        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-        font-size: 30px;
-        font-weight: 700;
-        color: #0f172a;
-        margin: 0 0 4px;
-      }
-      .fb-stat-label {
-        font-size: 14px;
-        color: #475569;
-        margin: 0;
-      }
-      @media (max-width: 768px) {
-        .fb-stat-card { min-width: 100%; }
-      }
+      .fb-hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 80px; text-align: center; position: relative; }
+      .fb-hero::before { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(145,71,255,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+      .fb-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; font-size: 12px; font-weight: 500; color: #a66dff; margin-bottom: 32px; }
+      .fb-badge-dot { width: 8px; height: 8px; background: #9147ff; border-radius: 50%; display: inline-block; }
+      .fb-h1 { font-size: clamp(40px, 7vw, 80px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 32px; position: relative; z-index: 1; }
+      .fb-sub { max-width: 640px; margin: 0 auto 48px; font-size: clamp(16px, 2.5vw, 20px); color: #475569; line-height: 1.6; position: relative; z-index: 1; }
+      .fb-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 80px; position: relative; z-index: 1; }
+      .fb-btn-p { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 9999px; font-size: 16px; font-weight: 600; background: #9147ff; color: #fff; box-shadow: 0 0 20px rgba(145,71,255,0.2); }
+      .fb-btn-s { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 9999px; font-size: 16px; font-weight: 600; }
+      .fb-stats { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 768px; position: relative; z-index: 1; }
+      .fb-stat { flex: 1; min-width: 180px; max-width: 240px; padding: 24px; text-align: center; }
+      .fb-stat-v { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 30px; font-weight: 700; margin-bottom: 4px; }
+      .fb-stat-l { font-size: 14px; color: #475569; }
+      @media (max-width: 768px) { .fb-stat { min-width: 100%; } }
 
-      /* --- Services Section --- */
-      .fb-services {
-        padding: 80px 24px;
-        max-width: 1280px;
-        margin: 0 auto;
-      }
-      .fb-section-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 16px;
-        border-radius: 9999px;
-        background: rgba(255,255,255,0.6);
-        border: 1px solid rgba(145,71,255,0.12);
-        font-size: 12px;
-        font-weight: 500;
-        color: #a66dff;
-        margin-bottom: 16px;
-      }
-      .fb-section-title {
-        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-        font-size: clamp(28px, 5vw, 48px);
-        font-weight: 700;
-        margin: 0 0 16px;
-        line-height: 1.15;
-      }
-      .fb-section-subtitle {
-        font-size: 18px;
-        color: #475569;
-        max-width: 600px;
-        line-height: 1.6;
-        margin: 0 0 48px;
-      }
-      .fb-services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 24px;
-      }
-      .fb-service-card {
-        padding: 32px;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.6);
-        border: 1px solid rgba(145,71,255,0.12);
-      }
-      .fb-service-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        background: rgba(145,71,255,0.08);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #9147ff;
-        font-size: 22px;
-        margin-bottom: 20px;
-      }
-      .fb-service-card h3 {
-        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        margin: 0 0 8px;
-      }
-      .fb-service-card p {
-        font-size: 14px;
-        color: #475569;
-        line-height: 1.6;
-        margin: 0;
-      }
+      /* --- Section shared --- */
+      .fb-section { padding: 112px 0; overflow: hidden; position: relative; }
+      .fb-section-header { text-align: center; margin-bottom: 80px; }
+      .fb-tag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9147ff; margin-bottom: 16px; }
+      .fb-h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+      .fb-section-sub { font-size: 18px; color: #475569; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
-      /* --- Noscript Banner (non-blocking) --- */
-      .noscript-banner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        background: #0f172a;
-        color: #ffffff;
-        padding: 14px 24px;
-        text-align: center;
-        font-family: 'Inter', system-ui, sans-serif;
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      .noscript-banner strong {
-        color: #a66dff;
-      }
+      /* --- Services grid --- */
+      .fb-grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+      .fb-card { padding: 32px; border-radius: 24px; }
+      .fb-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(145,71,255,0.08); display: flex; align-items: center; justify-content: center; color: #9147ff; font-size: 24px; margin-bottom: 24px; }
+      .fb-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+      .fb-card p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 16px; }
+      .fb-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+      .fb-tag-pill { padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 500; background: rgba(145,71,255,0.08); color: #a66dff; border: 1px solid rgba(145,71,255,0.1); }
+      .fb-link { font-size: 14px; font-weight: 600; color: #9147ff; }
+
+      /* --- Why section --- */
+      .fb-why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+      .fb-why-card { display: flex; gap: 16px; padding: 24px; border-radius: 16px; margin-bottom: 16px; }
+      .fb-why-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(145,71,255,0.1); display: flex; align-items: center; justify-content: center; color: #9147ff; font-size: 20px; flex-shrink: 0; }
+      .fb-why-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+      .fb-why-card p { font-size: 14px; color: #475569; line-height: 1.6; }
+      .fb-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; margin-top: 32px; }
+      .fb-bullet { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
+      .fb-check { color: #9147ff; font-weight: bold; }
+      @media (max-width: 1024px) { .fb-why-grid { grid-template-columns: 1fr; } }
+
+      /* --- Contact / CTA --- */
+      .fb-contact { padding: 112px 24px; text-align: center; }
+      .fb-form-wrap { max-width: 640px; margin: 0 auto; padding: 40px; }
+      .fb-form-wrap form { display: flex; flex-direction: column; gap: 16px; }
+      .fb-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      @media (max-width: 640px) { .fb-form-row { grid-template-columns: 1fr; } }
+      .fb-input { width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(145,71,255,0.15); background: rgba(248,250,252,0.6); font-size: 14px; font-family: inherit; color: #0f172a; outline: none; }
+      .fb-input:focus { border-color: rgba(145,71,255,0.5); box-shadow: 0 0 0 3px rgba(145,71,255,0.1); }
+      .fb-input::placeholder { color: #94a3b8; }
+      textarea.fb-input { resize: none; }
+      .fb-submit { width: 100%; padding: 16px; border-radius: 12px; border: none; background: #9147ff; color: #fff; font-size: 16px; font-weight: 600; font-family: inherit; cursor: pointer; }
+
+      /* --- Footer --- */
+      .fb-footer { border-top: 1px solid rgba(145,71,255,0.1); padding: 64px 0 32px; }
+      .fb-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+      .fb-footer h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
+      .fb-footer-links { display: flex; flex-direction: column; gap: 12px; }
+      .fb-footer-links a { font-size: 14px; color: #475569; }
+      .fb-footer-contact li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #475569; margin-bottom: 16px; }
+      .fb-footer-bottom { border-top: 1px solid rgba(145,71,255,0.08); padding-top: 32px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+      .fb-footer-bottom p { font-size: 12px; color: #94a3b8; }
+      @media (max-width: 768px) { .fb-footer-grid { grid-template-columns: 1fr; } }
+
+      /* --- Noscript banner (non-blocking) --- */
+      .noscript-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: #0f172a; color: #fff; padding: 14px 24px; text-align: center; font-size: 14px; line-height: 1.5; }
+      .noscript-banner strong { color: #a66dff; }
     </style>
   </head>
   <body>
     <div id="root">
       <!--
-        Static fallback content — real text, real links, real structure.
-        Crawlers index this immediately. React hydrates over it on load.
-        After `npm run build`, the postbuild-prerender script replaces this
-        with the fully-rendered React DOM.
+        Full static HTML mirror of the React app.
+        Every section is represented with real text content.
+        Crawlers index this immediately. React hydrates over it.
+        On Vercel, this IS the deployed HTML (prerender skips in CI).
       -->
-      <div class="fallback-shell">
-        <!-- Navbar -->
+      <div class="fb">
+
+        <!-- ===== NAVBAR ===== -->
         <header class="fb-nav">
           <nav class="fb-nav-inner">
-            <a href="#">
-              <img src="/remedix-logo.svg" alt="Remedi-X Solutions" class="fb-nav-logo" />
-            </a>
+            <a href="#"><img src="/remedix-logo.svg" alt="Remedi-X Solutions" /></a>
             <ul class="fb-nav-links">
               <li><a href="#services">Services</a></li>
               <li><a href="#why">Why Us</a></li>
@@ -386,97 +197,244 @@
           </nav>
         </header>
 
-        <!-- Hero -->
         <main>
+
+          <!-- ===== HERO ===== -->
           <section class="fb-hero" id="hero">
-            <div class="fb-badge">
+            <div class="fb-badge fb-glass">
               <span class="fb-badge-dot"></span>
               Website Creation • Chatbots • Business Automations
             </div>
 
-            <h1 class="fb-heading">
-              <span>Turn Missed</span><br>
-              <span>Opportunities Into</span><br>
-              <span class="fb-heading-gradient">Customers</span>
+            <h1 class="fb-h1 fb-heading">
+              Turn Missed<br>
+              Opportunities Into<br>
+              <span class="fb-grad">Customers</span>
             </h1>
 
-            <p class="fb-subheading">
-              Build a stronger business presence with systems that help you respond
-              faster, capture more leads, and save hours of manual work.
+            <p class="fb-sub">
+              Build a stronger business presence with systems that help you
+              respond faster, capture more leads, and save hours of manual work.
             </p>
 
             <div class="fb-cta-row">
-              <a href="#contact" class="fb-cta-primary">
-                Get Your Free Consultation →
-              </a>
-              <a href="#services" class="fb-cta-secondary">
-                See What We Do
-              </a>
+              <a href="#contact" class="fb-btn-p">Get Your Free Consultation →</a>
+              <a href="#services" class="fb-btn-s fb-glass">See What We Do</a>
             </div>
 
             <div class="fb-stats">
-              <div class="fb-stat-card">
-                <p class="fb-stat-value">3x</p>
-                <p class="fb-stat-label">More Leads</p>
+              <div class="fb-stat fb-glass">
+                <p class="fb-stat-v">3x</p>
+                <p class="fb-stat-l">More Leads</p>
               </div>
-              <div class="fb-stat-card">
-                <p class="fb-stat-value">24/7</p>
-                <p class="fb-stat-label">Faster Follow-Up</p>
+              <div class="fb-stat fb-glass">
+                <p class="fb-stat-v">24/7</p>
+                <p class="fb-stat-l">Faster Follow-Up</p>
               </div>
-              <div class="fb-stat-card">
-                <p class="fb-stat-value">80%</p>
-                <p class="fb-stat-label">Less Manual Work</p>
+              <div class="fb-stat fb-glass">
+                <p class="fb-stat-v">80%</p>
+                <p class="fb-stat-l">Less Manual Work</p>
               </div>
             </div>
           </section>
 
-          <!-- Services -->
-          <section class="fb-services" id="services">
-            <div class="fb-section-tag">What We Build</div>
-            <h2 class="fb-section-title">
-              Everything You Need to <span class="fb-heading-gradient">Grow Online</span>
-            </h2>
-            <p class="fb-section-subtitle">
-              From professional websites to intelligent chatbots — we build the systems that help your business capture and convert more leads.
-            </p>
-            <div class="fb-services-grid">
-              <div class="fb-service-card">
-                <div class="fb-service-icon">🌐</div>
-                <h3>Professional Websites</h3>
-                <p>Custom, conversion-optimized websites that represent your brand and turn visitors into paying customers.</p>
+          <!-- ===== SERVICES ===== -->
+          <section class="fb-section" id="services">
+            <div class="fb-mw">
+              <div class="fb-section-header">
+                <p class="fb-tag">What We Help With</p>
+                <h2 class="fb-h2 fb-heading">Simple Systems. <span class="fb-grad">Real Results.</span></h2>
+                <p class="fb-section-sub">Perfect for businesses that want to grow without doing everything manually.</p>
               </div>
-              <div class="fb-service-card">
-                <div class="fb-service-icon">🤖</div>
-                <h3>AI Chatbots</h3>
-                <p>Intelligent chatbots that handle customer inquiries, capture leads, and provide 24/7 support — even while you sleep.</p>
-              </div>
-              <div class="fb-service-card">
-                <div class="fb-service-icon">⚙️</div>
-                <h3>Business Automations</h3>
-                <p>Streamline your workflows, automate follow-ups, and eliminate repetitive tasks to save up to 80% of manual work.</p>
+
+              <div class="fb-grid3">
+                <div class="fb-card fb-glass">
+                  <div class="fb-icon">🌐</div>
+                  <h3 class="fb-heading">Website Creation &amp; Redesign</h3>
+                  <p>Professional websites that make your business look modern, trustworthy, and ready to grow. From landing pages to full web platforms.</p>
+                  <div class="fb-tags">
+                    <span class="fb-tag-pill">Custom Design</span>
+                    <span class="fb-tag-pill">Mobile-First</span>
+                    <span class="fb-tag-pill">SEO Optimized</span>
+                    <span class="fb-tag-pill">Fast Loading</span>
+                  </div>
+                  <a href="#contact" class="fb-link">Learn more →</a>
+                </div>
+
+                <div class="fb-card fb-glass">
+                  <div class="fb-icon">🤖</div>
+                  <h3 class="fb-heading">AI Chatbots</h3>
+                  <p>Guide visitors, answer questions, capture leads, and respond 24/7 on your website or social pages. Never miss a conversation again.</p>
+                  <div class="fb-tags">
+                    <span class="fb-tag-pill">24/7 Support</span>
+                    <span class="fb-tag-pill">Lead Capture</span>
+                    <span class="fb-tag-pill">Multi-Platform</span>
+                    <span class="fb-tag-pill">Smart Replies</span>
+                  </div>
+                  <a href="#contact" class="fb-link">Learn more →</a>
+                </div>
+
+                <div class="fb-card fb-glass">
+                  <div class="fb-icon">⚙️</div>
+                  <h3 class="fb-heading">Business Automations</h3>
+                  <p>Email follow-up, intake forms, text automations, and call-to-text systems that save time and keep your pipeline flowing.</p>
+                  <div class="fb-tags">
+                    <span class="fb-tag-pill">Email Sequences</span>
+                    <span class="fb-tag-pill">Text Automation</span>
+                    <span class="fb-tag-pill">Intake Forms</span>
+                    <span class="fb-tag-pill">Call-to-Text</span>
+                  </div>
+                  <a href="#contact" class="fb-link">Learn more →</a>
+                </div>
               </div>
             </div>
           </section>
+
+          <!-- ===== WHY IT MATTERS ===== -->
+          <section class="fb-section" id="why" style="background: linear-gradient(to bottom, #fff, rgba(248,250,252,0.5), #fff);">
+            <div class="fb-mw">
+              <div class="fb-why-grid">
+                <!-- Left -->
+                <div>
+                  <p class="fb-tag">Why It Matters</p>
+                  <h2 class="fb-h2 fb-heading">
+                    We help you make a <span class="fb-grad">better first impression</span> and build a stronger system behind the scenes.
+                  </h2>
+                  <p class="fb-muted" style="font-size: 18px; line-height: 1.6; margin-bottom: 32px; max-width: 560px;">
+                    A weak website, missed calls, and slow responses can quietly cost you
+                    business. We build the digital infrastructure that keeps your pipeline
+                    healthy and your customers happy.
+                  </p>
+                  <div class="fb-bullets">
+                    <div class="fb-bullet"><span class="fb-check">✓</span> Websites</div>
+                    <div class="fb-bullet"><span class="fb-check">✓</span> Chatbots</div>
+                    <div class="fb-bullet"><span class="fb-check">✓</span> Text &amp; Email Systems</div>
+                    <div class="fb-bullet"><span class="fb-check">✓</span> Forms &amp; Intake</div>
+                  </div>
+                </div>
+
+                <!-- Right — Reason Cards -->
+                <div>
+                  <div class="fb-why-card fb-glass">
+                    <div class="fb-why-icon">🛡️</div>
+                    <div>
+                      <h3 class="fb-heading">First Impressions Matter</h3>
+                      <p>A weak website and slow responses quietly cost you business every single day.</p>
+                    </div>
+                  </div>
+                  <div class="fb-why-card fb-glass">
+                    <div class="fb-why-icon">📈</div>
+                    <div>
+                      <h3 class="fb-heading">Capture Every Lead</h3>
+                      <p>Missed calls and unanswered messages mean lost customers. We fix that.</p>
+                    </div>
+                  </div>
+                  <div class="fb-why-card fb-glass">
+                    <div class="fb-why-icon">🤝</div>
+                    <div>
+                      <h3 class="fb-heading">Better Customer Experience</h3>
+                      <p>Cleaner follow-up, faster responses, and systems that work while you sleep.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== CONTACT / CTA ===== -->
+          <section class="fb-contact" id="contact">
+            <div class="fb-mw" style="max-width: 900px;">
+              <div class="fb-badge fb-glass" style="margin-bottom: 32px;">✨ Ready to upgrade your business?</div>
+
+              <h2 class="fb-h2 fb-heading" style="margin-bottom: 24px;">
+                Let's Build Something <span class="fb-grad">That Works</span>
+              </h2>
+
+              <p class="fb-muted" style="font-size: 18px; max-width: 640px; margin: 0 auto 48px; line-height: 1.6;">
+                Simple systems. Cleaner follow-up. Better customer experience.
+                Get in touch and let's talk about what your business needs.
+              </p>
+
+              <div class="fb-form-wrap fb-glass-strong">
+                <!-- 
+                  The form uses a mailto: fallback action so it works without JS.
+                  React's CTA component hydrates over this and handles submission via fetch.
+                -->
+                <form action="mailto:Mamoon@remedixsolutions.com" method="POST" enctype="text/plain">
+                  <div class="fb-form-row">
+                    <input type="text" name="name" placeholder="Your name" required class="fb-input" />
+                    <input type="email" name="email" placeholder="Your email" required class="fb-input" />
+                  </div>
+                  <input type="tel" name="phone" placeholder="Your phone number" required class="fb-input" />
+                  <textarea name="message" rows="4" placeholder="Tell us about your project..." required class="fb-input"></textarea>
+                  <button type="submit" class="fb-submit">Send Message →</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
         </main>
 
-        <!-- Footer -->
-        <footer style="border-top: 1px solid rgba(145,71,255,0.1); padding: 48px 24px; max-width: 1280px; margin: 0 auto;">
-          <p style="font-size: 14px; color: #475569; margin: 0 0 12px;">
-            <strong style="color: #0f172a;">Remedi-X Solutions</strong> — Turn missed opportunities into customers with professional websites, AI chatbots, and smart business automations.
-          </p>
-          <p style="font-size: 13px; color: #94a3b8; margin: 0;">
-            Contact: <a href="mailto:Mamoon@remedixsolutions.com" style="color: #9147ff; text-decoration: none;">Mamoon@remedixsolutions.com</a>
-          </p>
-          <p style="font-size: 12px; color: #94a3b8; margin: 16px 0 0;">© 2026 Remedi-X Solutions. All rights reserved.</p>
+        <!-- ===== FOOTER ===== -->
+        <footer class="fb-footer">
+          <div class="fb-mw">
+            <div class="fb-footer-grid">
+              <!-- Brand -->
+              <div>
+                <a href="#" style="display: inline-block; margin-bottom: 20px;">
+                  <img src="/remedix-logo.svg" alt="Remedi-X Solutions" style="height: 40px;" />
+                </a>
+                <p class="fb-muted" style="font-size: 14px; line-height: 1.6; max-width: 280px;">
+                  Turn missed opportunities into customers with professional websites,
+                  AI chatbots, and smart business automations.
+                </p>
+              </div>
+
+              <!-- Quick Links -->
+              <div>
+                <h4 class="fb-heading">Quick Links</h4>
+                <div class="fb-footer-links">
+                  <a href="#services">Services</a>
+                  <a href="#why">Why Us</a>
+                  <a href="#work">Our Work</a>
+                  <a href="#contact">Contact</a>
+                </div>
+              </div>
+
+              <!-- Contact Info -->
+              <div>
+                <h4 class="fb-heading">Get In Touch</h4>
+                <ul class="fb-footer-contact">
+                  <li>
+                    <span class="fb-purple">✉</span>
+                    <a href="mailto:Mamoon@remedixsolutions.com" style="color: #475569;">Mamoon@remedixsolutions.com</a>
+                  </li>
+                  <li>
+                    <span class="fb-purple">📞</span>
+                    <span>Contact us for a quote</span>
+                  </li>
+                  <li>
+                    <span class="fb-purple">📍</span>
+                    <span>Remote — Serving businesses everywhere</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="fb-footer-bottom">
+              <p>© 2026 Remedi-X Solutions. All rights reserved.</p>
+              <p>Designed with <span class="fb-purple">♥</span> by Remedi-X</p>
+            </div>
+          </div>
         </footer>
+
       </div>
     </div>
 
-    <!-- Noscript: non-blocking bottom banner — content above is still fully visible -->
+    <!-- Non-blocking banner for no-JS users — content above is fully visible -->
     <noscript>
       <div class="noscript-banner">
-        <strong>Note:</strong> For the full interactive experience, please enable JavaScript.
-        You can still browse the content above.
+        <strong>Note:</strong> For the full interactive experience, please enable JavaScript. You can still browse all content above.
       </div>
     </noscript>
 
