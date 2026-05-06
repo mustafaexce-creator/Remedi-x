@@ -12,7 +12,7 @@ const projects = [
   },
   {
     title: 'Buffalo Bargains',
-    tagline: 'The Hunt is On.',
+    tagline: 'The Hunt is Open.',
     description:
       'A premier liquidation outlet offering a unique bin-store shopping experience with daily price drops on name-brand electronics and home goods.',
     url: 'https://buffalobargains.com',
